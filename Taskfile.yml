@@ -1,0 +1,11 @@
+---
+# https://taskfile.dev
+version: '3'
+tasks:
+  dev:
+    cmd: air
+  goose:
+    dir: internal/sql/migrations
+    dotenv:
+      - "../../dev.env"
+    cmd: GOOSE_DRIVER=$GOOSE_DRIVER GOOSE_DBSTRING=$GOOSE_DBSTRING goose {{.CLI_ARGS}} # yamllint disable-line
