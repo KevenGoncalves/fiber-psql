@@ -22,3 +22,5 @@ Railway is the recommended deployment platform, but any platform that supports D
 ## TODO
 
 - Add Swagger
+
+Credits: <https://github.com/bmdavis419/tapir-app>
