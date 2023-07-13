@@ -1,11 +1,23 @@
 ---
 # https://taskfile.dev
 version: '3'
+
 tasks:
-  dev:
-    cmd: air
   goose:
     dir: internal/sql/migrations
     dotenv:
-      - "../../dev.env"
-    cmd: GOOSE_DRIVER=$GOOSE_DRIVER GOOSE_DBSTRING=$GOOSE_DBSTRING goose {{.CLI_ARGS}} # yamllint disable-line
+      - "../../app.env"
+    cmd: GOOSE_DRIVER=$DB_URI GOOSE_DBSTRING=$DB_DRIVER goose {{.CLI_ARGS}} # yamllint disable-line
+
+  build:
+    cmd: go build -o http-server cmd/http/main.go
+
+  start:
+    cmd: ./http-server
+
+  install:
+    cmds:
+      - go install github.com/go-task/task/v3/cmd/task@latest
+      - go install github.com/cosmtrek/air@latest
+      - go install github.com/kyleconroy/sqlc/cmd/sqlc@latest
+      - go install github.com/pressly/goose/v3/cmd/goose@latest

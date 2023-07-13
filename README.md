@@ -2,21 +2,23 @@
 
 ## Requirements to run the app
 
-- Install Taskfile
-- Install air
-- Install sqlc
-- Install goose
+- Install [Taskfile](https://taskfile.dev/installation) (required)
+- Install other packages with `task install`
 
 ## Env Vars
 
-Copy the dev.env.example for dev.env
+- Copy the app.env.example to app.env
+- Populate the app.env
 
 ## Scripts
 
-- To run development server `task dev`
 - To run migrations `task goose -- up`
+- To run development server `task dev`
+
+## Deployment
+
+Railway is the recommended deployment platform, but any platform that supports Docker should work.
 
 ## TODO
 
-- Add build script
-- Dockerfile entry
+- Add Swagger
