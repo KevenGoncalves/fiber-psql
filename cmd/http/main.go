@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/KevenGoncalves/fiber-psql/config"
-	"github.com/KevenGoncalves/fiber-psql/internal/core/server"
+	"github.com/KevenGoncalves/fiber-psql/internal/server"
 	"github.com/KevenGoncalves/fiber-psql/pkg/shutdown"
 	_ "github.com/lib/pq"
 	"log"

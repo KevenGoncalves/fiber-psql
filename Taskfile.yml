@@ -4,10 +4,11 @@ version: '3'
 
 tasks:
   goose:
-    dir: internal/sql/migrations
+    dir: internal/databases/postgres/migrations
+
     dotenv:
-      - "../../app.env"
-    cmd: GOOSE_DRIVER=$DB_URI GOOSE_DBSTRING=$DB_DRIVER goose {{.CLI_ARGS}} # yamllint disable-line
+      - "../../../../app.env"
+    cmd: GOOSE_DRIVER=$DB_DRIVER GOOSE_DBSTRING=$DB_URI goose {{.CLI_ARGS}} # yamllint disable-line
 
   build:
     cmd: go build -o http-server cmd/http/main.go

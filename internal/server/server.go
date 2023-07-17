@@ -3,7 +3,7 @@ package server
 import (
 	"github.com/KevenGoncalves/fiber-psql/config"
 	"github.com/KevenGoncalves/fiber-psql/internal/app/users"
-	"github.com/KevenGoncalves/fiber-psql/internal/core/storage"
+	"github.com/KevenGoncalves/fiber-psql/internal/databases/postgres"
 	"github.com/bytedance/sonic"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -13,7 +13,7 @@ import (
 func BuildServer(env config.EnvVars) (*fiber.App, func(), error) {
 
 	//connect database
-	db, err := storage.ConnectDB(env)
+	db, err := postgres.ConnectDB(env)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -32,6 +32,6 @@ func BuildServer(env config.EnvVars) (*fiber.App, func(), error) {
 	users.Routes(app, users.NewUserController(db))
 
 	return app, func() {
-		storage.CloseDB(db)
+		postgres.CloseDB(db)
 	}, nil
 }

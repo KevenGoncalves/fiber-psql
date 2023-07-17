@@ -1,8 +1,7 @@
-package storage
+package postgres
 
 import (
 	"database/sql"
-
 	"github.com/KevenGoncalves/fiber-psql/config"
 )
 

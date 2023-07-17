@@ -21,7 +21,7 @@ ARG DB_DRIVER
 ENV CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GOOSE_DRIVER=${DB_DRIVER} GOOSE_DBSTRING=${DB_URI}
 
 # changing directory to the migrations folder and migrate up
-WORKDIR /build/internal/sql/migrations 
+WORKDIR /build/internal/databases/postgres/migrations
 RUN goose up
 
 # changing directory to the build and build it

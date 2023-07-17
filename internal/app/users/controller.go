@@ -2,13 +2,14 @@ package users
 
 import (
 	"database/sql"
-	"github.com/KevenGoncalves/fiber-psql/internal/database"
+
+	"github.com/KevenGoncalves/fiber-psql/internal/databases/postgres/sqlc"
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 )
 
 type UserController struct {
-	queries *database.Queries
+	queries *sqlc.Queries
 }
 
 type CreateUserDTO struct {
@@ -26,7 +27,7 @@ type UpdateUserDTO struct {
 
 func NewUserController(db *sql.DB) *UserController {
 	return &UserController{
-		queries: database.New(db),
+		queries: sqlc.New(db),
 	}
 }
 
@@ -37,7 +38,7 @@ func (t *UserController) Create(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(err.Error())
 	}
 
-	var user database.CreateUserParams
+	var user sqlc.CreateUserParams
 
 	user.Email = &body.Email
 	user.Name = &body.Name
@@ -117,7 +118,7 @@ func (t *UserController) Update(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(err.Error())
 	}
 
-	var user database.UpdateUserParams
+	var user sqlc.UpdateUserParams
 
 	user.ID = uuid
 	user.Email = &body.Email
