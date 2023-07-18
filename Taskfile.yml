@@ -3,6 +3,9 @@
 version: '3'
 
 tasks:
+  dev:
+    cmd: air
+
   goose:
     dir: internal/databases/postgres/migrations
 
